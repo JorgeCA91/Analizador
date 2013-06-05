@@ -1,9 +1,3 @@
-/**
- *
- *
- * @author 
- * @version 1.00 2013/5/24
- */
 import java.util.Vector;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -17,6 +11,7 @@ public class Cat
 	private Vector archivos = new Vector();
 	private String linea;
 	private Errores errores;
+	Object num = 5;
 	
     public Cat(Consola cons,String[][] com)
     {
@@ -30,6 +25,8 @@ public class Cat
     	if(comAn[0][1].isEmpty())
     	{
     		conso.escribeConsola("");
+    		int x = (int) num;
+    		conso.escribeConsola (""+x);
     	}
     	else
     	{
@@ -82,15 +79,15 @@ public class Cat
     	
     public BufferedReader cargaAr(String nombre)
     {   
-    	conso.escribeConsola("4");
     	BufferedReader a=null;	 
         try
         {   
             a = new BufferedReader(new FileReader(nombre));
+            
         }
         catch (FileNotFoundException e)
         {   
-            errores.setError(6,"El archivo "+nombre+" no existe.");
+        	errores.setError(6,"El archivo "+nombre+" no existe.");
         	errores.despliegaErrror();
         }
         return a;
@@ -99,24 +96,35 @@ public class Cat
     public  String leeAr(BufferedReader d)
     {
         String linea = "";
+        String data="";
         try
         {   
-            linea =d.readLine();
+        	
+            linea =d.readLine().toString ();
         }
         catch (Exception e)
         {
-        	errores.setError(6,"Error en lectura de el archivo...");
-        	errores.despliegaErrror();
+        	    if(linea.isEmpty ())
+        	    {
+        	    	return null;
+        	    }
+        	    {
+        	    	errores.setError(6,"Error en lectura de el archivo...");
+        			errores.despliegaErrror();
+        			return null;
+        	    }
+        	
+
         }
-        String data; 
-        if((linea != null))
-        {
-            data = linea;
-            return data; 
-        }
-        else
-        {
-            return null;
-        }
+        
+        	if(linea!=null)
+        	{
+            	data = linea;
+            	return data;
+        	}
+        	else
+        	{
+           		return  null;
+        	}
     }
 }

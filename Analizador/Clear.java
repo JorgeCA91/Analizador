@@ -6,6 +6,9 @@
  */
 
 
+
+
+
 public class Clear
 {
 	Consola conso;

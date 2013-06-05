@@ -6,6 +6,7 @@
  */
 
 
+
 public class Echo 
 {
 	private Consola conso;
@@ -60,7 +61,7 @@ public class Echo
    			String temp1 = temp.substring(j);
    			temp = "";
    			temp = temp1;
-   			int conTemp = contEs%2;
+   			int conTemp = (contEs % 2);
    			if(contEs>0 && conTemp==0)
    			{	
    				conso.escribeConsola(temp);

@@ -3,6 +3,9 @@
  * and open the template in the editor.
  */
 
+
+
+
 import java.io.File;
 /**
  *
@@ -51,7 +54,38 @@ public class Cd
    					}
    				}
    			String temp1 = temp.substring(j);
-       		dir = temp1;
+       		String com = ""+temp1.charAt (0)+temp1.charAt (1)+temp1.charAt (2);
+       		if(com.equals ("c:/"))
+       		{
+       			dir = temp1;
+       			conso.escribeConsola("c:/");
+       		}
+       		else if (com.equals ("../"))
+       		{
+       			String dirTemp = System.getProperty("user.dir");
+       			char sl = ' ';
+       			conso.escribeConsola (dirTemp);
+       			int i = dirTemp.length()-1;
+       			String slash = "\\";
+       			while ((!(slash.equals(sl)) || sl!='/') && i>=0)
+       			{	
+       				sl = dirTemp.charAt(i);
+       				conso.escribeConsola (""+sl+"\\");
+       				i--;
+       			}
+       			String temp2 = dirTemp.substring(0,i+1);
+       			conso.escribeConsola (temp2);
+       			
+       			if(temp2.equals ("c:"))
+       				dir = "c:/";
+       			else
+       				dir = temp2;
+       		}
+       		else
+       		{
+       			conso.escribeConsola("....");
+       			dir = System.getProperty("user.dir")+temp1;
+       		}
     	}
     }
     
@@ -62,12 +96,12 @@ public class Cd
     public void analizaDir()
     {
 		setDir();
+		
 		try
 		{
 			File f = new File(getDir());
     		if (f.exists())
     		{ 
-    			conso.escribeConsola("1");
     			System.setProperty("user.dir",getDir()); 
     		}
 			else 
