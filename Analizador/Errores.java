@@ -50,6 +50,15 @@ public class Errores
 			case 6: 
 				conso.escribeConsola("cat : "+getError());
 				break;
+			case 7:
+				conso.escribeConsola("asigna :"+getError ());
+				break;
+			case 8:
+				conso.escribeConsola ("Variable Gobal :"+getError ());
+				break;
+			case 9:
+				conso.escribeConsola ("suma :"+getError ());
+				break;
 			default :
 		}
     	

@@ -66,11 +66,11 @@ public class Cd
        			char sl = ' ';
        			conso.escribeConsola (dirTemp);
        			int i = dirTemp.length()-1;
-       			String slash = "\\";
-       			while ((!(slash.equals(sl)) || sl!='/') && i>=0)
+       			char slash = '\\';
+       			while (( sl!='\\' && sl!='/') && i>=0)
        			{	
        				sl = dirTemp.charAt(i);
-       				conso.escribeConsola (""+sl+"\\");
+
        				i--;
        			}
        			String temp2 = dirTemp.substring(0,i+1);
@@ -84,7 +84,7 @@ public class Cd
        		else
        		{
        			conso.escribeConsola("....");
-       			dir = System.getProperty("user.dir")+temp1;
+       			dir = System.getProperty("user.dir")+"\\"+temp1;
        		}
     	}
     }

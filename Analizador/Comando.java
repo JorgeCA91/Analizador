@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 import java.util.Vector;
+import java.util.Hashtable;
 import java.util.Collection;
 
 /**
@@ -21,10 +22,13 @@ public class Comando
 	private Exit exit;
 	private Clear clear;
 	private Cat cat;
+	private Asigna asigna;
+	private Suma suma;
 	private int index; 
+	private Hashtable varGlob;
     Vector comandos = new Vector();
     
-   	public Comando(String[][] com)
+   	public Comando(String[][] com, Hashtable var)
    	{
 		comandos.add("cd");
    		comandos.add("ls");
@@ -33,7 +37,10 @@ public class Comando
    		comandos.add("exit");
    		comandos.add("clear");
    		comandos.add("cat");
+   		comandos.add("asigna");
+   		comandos.add ("suma");
    		this.comAn = com;
+   		this.varGlob = var;
    		
    	}
     public void consigueConsola(Consola cons)
@@ -66,7 +73,7 @@ public class Comando
 				ls = new Ls(conso);
 				break;
 			case 2://echo
-				echo = new Echo(comAn,conso);
+				echo = new Echo(comAn,conso,varGlob);
 				break;
 			case 3://pwd 
 				pwd = new Pwd(conso);
@@ -80,6 +87,11 @@ public class Comando
 			case 6://cat
 				cat = new Cat(conso,comAn);
 				break;
+			case 7://Asigna
+				asigna = new Asigna(varGlob,conso,comAn);
+				break;
+			case 8://Suma
+				suma = new Suma(varGlob,conso,comAn);
 			default :
 		}
     }

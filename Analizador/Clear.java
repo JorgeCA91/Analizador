@@ -32,5 +32,15 @@ public class Clear
 		conso.escribeConsola("                                                                    ");
 		conso.escribeConsola("                                                                    ");
 		conso.escribeConsola("                                                                    ");
+		conso.escribeConsola("                                                                    ");
+		conso.escribeConsola("                                                                    ");
+		conso.escribeConsola("                                                                    ");
+		conso.escribeConsola("                                                                    ");
+		conso.escribeConsola("                                                                    ");
+		conso.escribeConsola("                                                                    ");
+		conso.escribeConsola("                                                                    ");
+		conso.escribeConsola("                                                                    ");
+		conso.escribeConsola("                                                                    ");
+		conso.escribeConsola("                                                                    ");
 	}
 }

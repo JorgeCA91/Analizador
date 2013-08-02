@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.Vector;
+import java.util.Hashtable;
 import javax.swing.JOptionPane;
 public class Analizador 
 {
@@ -7,8 +8,11 @@ public class Analizador
     String linea;
     String palabra ="";
     String[][] comAn = new String[1][2];
+    Errores errores;
+    
     Comando com;
     int key = 0;
+    private Hashtable varGlob;
     public static void main(String[] args) 
     {
         Analizador anali = new Analizador();
@@ -20,6 +24,9 @@ public class Analizador
         comAn[0][1] = "";
         conso = new Consola();
         conso.setLee(true);
+        errores = new Errores(conso);
+        varGlob = new Hashtable();
+        varGlob.put (".",0);
         while(conso.isLee())
         {
             conso.leeConsola();
@@ -55,7 +62,7 @@ public class Analizador
 	
 	public void analiza()
 	{
-		com = new Comando(comAn);
+		com = new Comando(comAn,varGlob);
 		if(com.isComando())
 		{
 			
@@ -63,9 +70,23 @@ public class Analizador
 			com.consigueConsola(conso);
 			com.ejecutaCom();
 		}
-		else 
+		else if(varGlob.containsKey(comAn[0][0]))
 		{
-			conso.escribeConsola("Comando no valido...");
-		}	}
+			try 
+			{
+				Object[] val=(Object[])varGlob.get(comAn[0][0].toString ());
+				conso.escribeConsola(""+val[1].toString ());
+			}
+			catch(NullPointerException e)
+			{
+				errores.setError(8,"variable no definida");
+				errores.despliegaErrror ();
+			}
+		}
+		else
+		{
+			conso.escribeConsola("Error: "+comAn[0][0].toString ()+" no es comando, ni esta definido como variable...");
+		}	
+	}
 }
 //antonio.hernandez.blas@gmail.com
